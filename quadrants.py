@@ -1,16 +1,16 @@
 
 readings = [
 {
+        'SSID':'amzn1',
+        'RSSI': -21,  
+},
+{
         'SSID':'amzn2',
         'RSSI': -24, 
 },
 {
         'SSID':'amzn3',  
         'RSSI': -25, 
-},
-{
-        'SSID':'amzn1',
-        'RSSI': -32,  
 },
 ]
 
@@ -25,10 +25,11 @@ database_values = [
         'SSID':'amzn1',
         'row': 1,
         'column': 'null',
+        'zone': 'null'
     },
     {
         'SSID':'amzn2',
-        'row': 1, 
+        'row': 2, 
         'column': 2,
         'zone' : 4
     }
@@ -44,7 +45,10 @@ for reading in readings:
 
 strongest = top_three_SSID[0]
 second_strongest = top_three_SSID[1]
-print(second_strongest)
+
+
+
+rows_cols = []
 
 def determine_row():
     for database_value in database_values:
@@ -53,21 +57,31 @@ def determine_row():
         if strongest == database_value['SSID'] and database_value['row'] == 2:
             zone = database_value['zone']
             print(f'You are in zone {zone} ')
-        elif strongest == database_value['SSID'] and database_value['row'] == 1:
-            # If the strongest value is not in row 2, then it is in row 1
-            # Now I need to figure out how to use the second strongest reading to differentiate the columns
-            # and then use the column to determine the final zone
-            print('the strongest value is in row 1')
+            return zone
+        # If the strongest value is in the second row, call the function to determine what column this value is in
+        if strongest == database_value['SSID'] and database_value['row'] == 1:
             determine_column()
 
 
-determine_row()
-
 def determine_column():
-    for database_value in database_values: 
-        if second_strongest == database_value['SSID'] and database_value['column'] == 1:
-            
-            print(f'')
+        for database_value in database_values:
+            if second_strongest == database_value['SSID']:
+                column = database_value['column']
+                # print(f'The second strongest value is in row 2 and is in column {column}')
+                if column == 1:
+                    print('You are in zone 1')
+                    rows_cols.append((1,column))
+                    return (1,column)
+                if column == 2:
+                    print('You are in zone 2')
+                    rows_cols.append((1,column))
+
+
+
+determine_row()
+print(rows_cols[0])
+
+
 
 
  
