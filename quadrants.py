@@ -54,6 +54,11 @@ second_strongest = top_three_SSID[1]
 
 rows_cols = []
 
+"""
+These two functions are designed to work on a 2 by 2 section with three routers present
+
+"""
+
 def determine_row():
     for database_value in database_values:
         # Match the strongest RSSI with the database value and check to see if it's associated row is 2
@@ -71,7 +76,6 @@ def determine_column():
         for database_value in database_values:
             if second_strongest == database_value['SSID']:
                 column = database_value['column']
-                # print(f'The second strongest value is in row 2 and is in column {column}')
                 if column == 1:
                     print('You are in zone 1')
                     rows_cols.append((1,column))
