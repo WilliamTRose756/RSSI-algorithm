@@ -1,25 +1,29 @@
 
 readings = [
 {
-        'SSID':'amzn1',
-        'RSSI': -21,  
-},
-{
         'SSID':'amzn2',
-        'RSSI': -24, 
+        'RSSI': -58, 
 },
 {
         'SSID':'amzn3',  
-        'RSSI': -25, 
+        'RSSI': -65, 
+},
+{
+        'SSID':'amzn1',
+        'RSSI': -63,  
 },
 ]
+
+
+readings =  sorted(readings, key=lambda k: (k['RSSI']),reverse=True)
+
 
 database_values = [
     {
         'SSID':'amzn3',
         'row': 2, 
         'column': 1,
-        'zone' : 3
+        'zone' : 4
     },
     {
         'SSID':'amzn1',
@@ -31,7 +35,7 @@ database_values = [
         'SSID':'amzn2',
         'row': 2, 
         'column': 2,
-        'zone' : 4
+        'zone' : 3
     }
 ]
 
@@ -75,7 +79,6 @@ def determine_column():
                 if column == 2:
                     print('You are in zone 2')
                     rows_cols.append((1,column))
-
 
 
 
