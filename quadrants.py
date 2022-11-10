@@ -78,8 +78,7 @@ def determine_column():
 
 
 
-determine_row()
-print(rows_cols[0])
+
 
 
 
